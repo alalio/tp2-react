@@ -31,8 +31,7 @@ class Cell extends React.Component {
         super(props);
 
         this.state= {
-          value :cellStyle,
-            key : null
+          ismouseover :false,
         };
     }
     getvalue()
@@ -41,32 +40,22 @@ class Cell extends React.Component {
     }
     MouseOut()
     {
-        this.setState({value :cellStyle})
+        this.setState({ ismouseover : false});
 
     }
     MouseOver()
     {
-        this.setState({value :cellStylee})
+        this.setState({ ismouseover : true});
 
-    }
-    handleClick()
-    {
-      if(this.state.key === null) {
-          if (num === 0)
-              this.setState({key: 'X'})
-          else
-              this.setState({key: 'O'})
-      }
-       num=1-num;
     }
     render() {
         return (
             <div
-                style={this.state.value}
+                style={this.state.ismouseover ? cellStylee : cellStyle}
               onMouseOut={() => this.MouseOut()}
               onMouseOver={() => this.MouseOver()}
-              onClick={() => this.handleClick()} >
-                {this.state.key}
+              onClick={() => this.props.onclick()} >
+                {this.props.value}
             </div>
         );
     }
